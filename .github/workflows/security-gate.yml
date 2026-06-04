@@ -1,3 +1,4 @@
+@'
 name: Security Quality Gate
 
 on:
@@ -40,3 +41,4 @@ jobs:
         with:
           name: security-quality-gate-reports
           path: reports/
+'@ | Set-Content -Encoding UTF8 .\.github\workflows\security-gate.yml
