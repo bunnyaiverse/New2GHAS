@@ -1,6 +1,6 @@
 Flask==3.0.3
 Werkzeug==3.0.3
-requests==2.32.3
+requests==2.34.2
 urllib3==2.2.2
 PyYAML==6.0.2
 Jinja2==3.1.4
