@@ -49,6 +49,7 @@ jobs:
           powershell -ExecutionPolicy Bypass -File .\scripts\run-local-scans.ps1
 
       - name: Upload dashboard reports
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: ghas-training-reports
