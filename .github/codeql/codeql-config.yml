@@ -1,0 +1,11 @@
+name: GHAS OWASP Python training CodeQL config
+
+queries:
+  - uses: security-extended
+  - uses: security-and-quality
+
+paths:
+  - app.py
+
+paths-ignore:
+  - tests
