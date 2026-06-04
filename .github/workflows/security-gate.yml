@@ -19,22 +19,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Install parser dependencies
-        shell: pwsh
-        run: python -m pip install PyYAML==6.0.2
+      - name: Verify Python 3.11
+        shell: powershell
+        run: |
+          py -3.11 --version
 
       - name: Generate reports if missing
-        shell: pwsh
-        run: .\scripts\run-local-scans.ps1
+        shell: powershell
+        run: |
+          powershell -ExecutionPolicy Bypass -File .\scripts\run-local-scans.ps1
 
       - name: Evaluate quality gate
-        shell: pwsh
-        run: .\scripts\evaluate-security-gate.ps1
+        shell: powershell
+        run: |
+          powershell -ExecutionPolicy Bypass -File .\scripts\evaluate-security-gate.ps1
 
       - name: Upload quality gate reports
         if: always()
