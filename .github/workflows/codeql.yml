@@ -28,12 +28,12 @@ jobs:
           config-file: ./.github/codeql/codeql-config.yml
 
       - name: Verify Python 3.11
-        shell: pwsh
+        shell: powershell
         run: |
           py -3.11 --version
 
       - name: Install dependencies
-        shell: pwsh
+        shell: powershell
         run: |
           py -3.11 -m pip install --upgrade pip
           py -3.11 -m pip install -r requirements.txt
@@ -44,8 +44,9 @@ jobs:
           category: "/language:python"
 
       - name: Generate local dashboard reports
-        shell: pwsh
-        run: .\scripts\run-local-scans.ps1
+        shell: powershell
+        run: |
+          powershell -ExecutionPolicy Bypass -File .\scripts\run-local-scans.ps1
 
       - name: Upload dashboard reports
         uses: actions/upload-artifact@v4
