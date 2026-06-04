@@ -1,12 +1,13 @@
-@'
 name: Security Quality Gate
 
-on:
+"on":
+  workflow_dispatch:
   workflow_run:
-    workflows: ["CodeQL SAST", "Secret Scanning Demo"]
+    workflows:
+      - CodeQL SAST
+      - Secret Scanning Demo
     types:
       - completed
-  workflow_dispatch:
 
 permissions:
   contents: read
@@ -14,26 +15,25 @@ permissions:
 jobs:
   quality-gate:
     name: Evaluate security policy
-    runs-on: [self-hosted, Windows]
+    runs-on:
+      - self-hosted
+      - Windows
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Verify Python 3.11
+      - name: Verify Python
         shell: powershell
-        run: |
-          py -3.11 --version
+        run: py -3.11 --version
 
       - name: Generate reports if missing
         shell: powershell
-        run: |
-          powershell -ExecutionPolicy Bypass -File .\scripts\run-local-scans.ps1
+        run: powershell -ExecutionPolicy Bypass -File .\scripts\run-local-scans.ps1
 
       - name: Evaluate quality gate
         shell: powershell
-        run: |
-          powershell -ExecutionPolicy Bypass -File .\scripts\evaluate-security-gate.ps1
+        run: powershell -ExecutionPolicy Bypass -File .\scripts\evaluate-security-gate.ps1
 
       - name: Upload quality gate reports
         if: always()
@@ -41,4 +41,3 @@ jobs:
         with:
           name: security-quality-gate-reports
           path: reports/
-'@ | Set-Content -Encoding UTF8 .\.github\workflows\security-gate.yml
