@@ -1,3 +1,4 @@
+@'
 name: CodeQL SAST
 
 on:
@@ -54,3 +55,4 @@ jobs:
         with:
           name: ghas-training-reports
           path: reports/
+'@ | Set-Content -Encoding UTF8 .\.github\workflows\codeql.yml
