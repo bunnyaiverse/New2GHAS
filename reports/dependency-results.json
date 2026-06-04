@@ -1,0 +1,26 @@
+﻿{
+    "findings":  [
+                     {
+                         "id":  "demo-urllib3-old",
+                         "type":  "dependencies",
+                         "severity":  "high",
+                         "line":  4,
+                         "remediation":  "Apply Dependabot update or requirements.fixed.txt.",
+                         "owasp":  "A06 Vulnerable and Outdated Components",
+                         "status":  "open",
+                         "title":  "urllib3 is pinned to a vulnerable training version",
+                         "file":  "requirements.txt"
+                     },
+                     {
+                         "id":  "demo-pyyaml-old",
+                         "type":  "dependencies",
+                         "severity":  "high",
+                         "line":  5,
+                         "remediation":  "Upgrade PyYAML and use yaml.safe_load.",
+                         "owasp":  "A06 Vulnerable and Outdated Components",
+                         "status":  "open",
+                         "title":  "PyYAML is pinned to an outdated training version",
+                         "file":  "requirements.txt"
+                     }
+                 ]
+}

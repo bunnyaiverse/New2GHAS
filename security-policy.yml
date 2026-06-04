@@ -1,0 +1,10 @@
+quality_gate:
+  fail_on_secrets: true
+  max_high_sast: 0
+  max_high_dependencies: 0
+  max_open_findings: 0
+severity_order:
+  - low
+  - medium
+  - high
+  - critical

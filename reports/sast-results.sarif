@@ -1,0 +1,135 @@
+﻿{
+    "runs":  [
+                 {
+                     "tool":  {
+                                  "driver":  {
+                                                 "name":  "Local GHAS Training SAST Simulator"
+                                             }
+                              },
+                     "results":  [
+                                     {
+                                         "message":  {
+                                                         "text":  "SQL query built from user-controlled data"
+                                                     },
+                                         "ruleId":  "py/sql-injection",
+                                         "properties":  {
+                                                            "owasp":  "A03 Injection",
+                                                            "status":  "open",
+                                                            "remediation":  "Use parameterized SQL queries.",
+                                                            "severity":  "high"
+                                                        },
+                                         "locations":  [
+                                                           {
+                                                               "physicalLocation":  {
+                                                                                        "artifactLocation":  {
+                                                                                                                 "uri":  "app.py"
+                                                                                                             },
+                                                                                        "region":  {
+                                                                                                       "startLine":  376
+                                                                                                   }
+                                                                                    }
+                                                           }
+                                                       ]
+                                     },
+                                     {
+                                         "message":  {
+                                                         "text":  "Shell command built from user-controlled data"
+                                                     },
+                                         "ruleId":  "py/command-line-injection",
+                                         "properties":  {
+                                                            "owasp":  "A03 Injection",
+                                                            "status":  "open",
+                                                            "remediation":  "Avoid shell=True and validate command arguments.",
+                                                            "severity":  "critical"
+                                                        },
+                                         "locations":  [
+                                                           {
+                                                               "physicalLocation":  {
+                                                                                        "artifactLocation":  {
+                                                                                                                 "uri":  "app.py"
+                                                                                                             },
+                                                                                        "region":  {
+                                                                                                       "startLine":  387
+                                                                                                   }
+                                                                                    }
+                                                           }
+                                                       ]
+                                     },
+                                     {
+                                         "message":  {
+                                                         "text":  "Weak cryptographic hash used for sensitive data"
+                                                     },
+                                         "ruleId":  "py/weak-crypto",
+                                         "properties":  {
+                                                            "owasp":  "A02 Cryptographic Failures",
+                                                            "status":  "open",
+                                                            "remediation":  "Use a salted password KDF.",
+                                                            "severity":  "high"
+                                                        },
+                                         "locations":  [
+                                                           {
+                                                               "physicalLocation":  {
+                                                                                        "artifactLocation":  {
+                                                                                                                 "uri":  "app.py"
+                                                                                                             },
+                                                                                        "region":  {
+                                                                                                       "startLine":  361
+                                                                                                   }
+                                                                                    }
+                                                           }
+                                                       ]
+                                     },
+                                     {
+                                         "message":  {
+                                                         "text":  "Unsafe deserialization of untrusted input"
+                                                     },
+                                         "ruleId":  "py/unsafe-deserialization",
+                                         "properties":  {
+                                                            "owasp":  "A08 Software and Data Integrity Failures",
+                                                            "status":  "open",
+                                                            "remediation":  "Use safe parsers and schema validation.",
+                                                            "severity":  "high"
+                                                        },
+                                         "locations":  [
+                                                           {
+                                                               "physicalLocation":  {
+                                                                                        "artifactLocation":  {
+                                                                                                                 "uri":  "app.py"
+                                                                                                             },
+                                                                                        "region":  {
+                                                                                                       "startLine":  472
+                                                                                                   }
+                                                                                    }
+                                                           }
+                                                       ]
+                                     },
+                                     {
+                                         "message":  {
+                                                         "text":  "Server-side request forgery from user-controlled URL"
+                                                     },
+                                         "ruleId":  "py/full-ssrf",
+                                         "properties":  {
+                                                            "owasp":  "A10 Server-Side Request Forgery",
+                                                            "status":  "open",
+                                                            "remediation":  "Allowlist outbound destinations and block private network targets.",
+                                                            "severity":  "high"
+                                                        },
+                                         "locations":  [
+                                                           {
+                                                               "physicalLocation":  {
+                                                                                        "artifactLocation":  {
+                                                                                                                 "uri":  "app.py"
+                                                                                                             },
+                                                                                        "region":  {
+                                                                                                       "startLine":  523
+                                                                                                   }
+                                                                                    }
+                                                           }
+                                                       ]
+                                     }
+                                 ]
+                 }
+             ],
+    "$schema":  "https://json.schemastore.org/sarif-2.1.0.json",
+    "version":  "2.1.0"
+}

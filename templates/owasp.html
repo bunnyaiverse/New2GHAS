@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="split">
+  <div>
+    <p class="eyebrow">{{ item.scanner }}</p>
+    <h1>{{ item.title }}</h1>
+    <p>{{ item.risk }}</p>
+    <p><strong>Fix:</strong> {{ item.fix }}</p>
+  </div>
+  <aside class="panel">
+    <p>Current mode: <strong>{{ mode }}</strong></p>
+    <a class="button" href="/lab/{{ item.id }}">Run current mode</a>
+    <a href="{{ item.vulnerable }}">Run vulnerable example</a>
+    <a href="{{ item.fixed }}">Run fixed example</a>
+  </aside>
+</section>
+{% endblock %}

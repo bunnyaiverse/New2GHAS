@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div>
+    <p class="eyebrow">Current mode: {{ mode }}</p>
+    <h1>GitHub Advanced Security demo lab</h1>
+    <p>Run CodeQL, Dependabot, secret scanning, quality gates, and local remediation against one Python app that maps directly to the OWASP Top 10.</p>
+  </div>
+  <a class="button" href="/security-dashboard">View scan dashboard</a>
+</section>
+
+<section class="grid">
+  {% for item in items %}
+  <article class="card">
+    <span>{{ item.scanner }}</span>
+    <h2>{{ item.title }}</h2>
+    <p>{{ item.risk }}</p>
+    <a href="/owasp/{{ item.id }}">Open lab</a>
+  </article>
+  {% endfor %}
+</section>
+{% endblock %}

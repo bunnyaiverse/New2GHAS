@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Training Login</h1>
+{% if error %}<p class="error">{{ error }}</p>{% endif %}
+<form method="post" class="panel form">
+  <label>Username <input name="username" value="admin"></label>
+  <label>Password <input name="password" value="admin123"></label>
+  <button type="submit">Sign in</button>
+</form>
+{% endblock %}

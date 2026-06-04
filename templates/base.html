@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GHAS OWASP Training Platform</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">GHAS OWASP Training Platform</a>
+    <nav>
+      <a href="/">OWASP Labs</a>
+      <a href="/security-dashboard">Security Dashboard</a>
+      <a href="/login">Login</a>
+    </nav>
+  </header>
+  <main class="layout">
+    <section class="warning">
+      Authorized training only. This app is intentionally vulnerable and binds to localhost by default.
+    </section>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

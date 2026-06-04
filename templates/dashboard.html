@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero compact">
+  <div>
+    <p class="eyebrow">Current mode: {{ mode }}</p>
+    <h1>Security dashboard</h1>
+    <p>Reads local files from <code>reports/</code> and summarizes SAST, secrets, dependencies, OWASP mapping, fixed findings, and quality gate status.</p>
+  </div>
+  <div class="gate {{ 'pass' if gate.passed else 'fail' }}">
+    Quality gate: {{ "PASS" if gate.passed else "FAIL" }}
+  </div>
+</section>
+
+<section class="metrics">
+  <div><strong>{{ summary.by_type.sast }}</strong><span>SAST</span></div>
+  <div><strong>{{ summary.by_type.secrets }}</strong><span>Secrets</span></div>
+  <div><strong>{{ summary.by_type.dependencies }}</strong><span>Dependencies</span></div>
+  <div><strong>{{ summary.fixed }}</strong><span>Fixed</span></div>
+  <div><strong>{{ summary.open }}</strong><span>Still open</span></div>
+</section>
+
+<section class="columns">
+  <article class="panel">
+    <h2>Severity</h2>
+    {% for severity, count in summary.by_severity.items() %}
+    <p><strong>{{ severity }}</strong>: {{ count }}</p>
+    {% endfor %}
+  </article>
+  <article class="panel">
+    <h2>OWASP Categories</h2>
+    {% for owasp, count in summary.by_owasp.items() %}
+    <p><strong>{{ owasp }}</strong>: {{ count }}</p>
+    {% endfor %}
+  </article>
+  <article class="panel">
+    <h2>Gate Checks</h2>
+    <p>High or critical SAST: {{ gate.high_sast }}</p>
+    <p>Open secrets: {{ gate.open_secrets }}</p>
+    <p>High or critical dependencies: {{ gate.high_dependencies }}</p>
+  </article>
+</section>
+
+<section class="table-wrap">
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Severity</th>
+        <th>OWASP</th>
+        <th>Status</th>
+        <th>Finding</th>
+        <th>Location</th>
+        <th>Remediation</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for finding in findings %}
+      <tr>
+        <td>{{ finding.type }}</td>
+        <td>{{ finding.severity }}</td>
+        <td>{{ finding.owasp }}</td>
+        <td>{{ finding.status }}</td>
+        <td>{{ finding.title }}</td>
+        <td>{{ finding.file }}:{{ finding.line }}</td>
+        <td>{{ finding.remediation }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}
